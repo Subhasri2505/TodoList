@@ -9,14 +9,14 @@ dotenv.config({
   path: envFile
 });
 
-const app=express();
+const app = express();
 app.use(cors());
 app.use(express.json());
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/todo")
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Could not connect to MongoDB:', err));
-  
+
 
 // API routes
 app.use("/api/todos", todoRoutes);
