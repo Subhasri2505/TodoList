@@ -1,5 +1,5 @@
 import express from "express";
-import Todo from "../models/Todo.js";
+import Todo from "../models/Todo.mjs";
 
 const router = express.Router();
 router.get("/", async (req, res) => {

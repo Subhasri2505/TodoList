@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# TodoList Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack Todo List application built with React (Frontend) and Node.js/Express (Backend).
 
-## Available Scripts
+## Project Structure
 
-In the project directory, you can run:
+- **root/**: Contains the Frontend (React) application.
+- **backend/**: Contains the Backend (Node/Express) API.
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Node.js](https://nodejs.org/) (v14 or higher recommended)
+- [MongoDB](https://www.mongodb.com/try/download/community) (Make sure MongoDB is installed and running locally)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation & Setup
 
-### `npm test`
+### 1. Backend Setup
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1.  Navigate to the backend directory:
+    ```bash
+    cd backend
+    ```
+2.  Install backend dependencies:
+    ```bash
+    npm install
+    ```
+3.  **Configure Environment Variables**:
+    - The project uses environment variables for configuration.
+    - Copy the example environment file to create your local `.env` file:
+      ```bash
+      cp .env.example .env
+      # On Windows (Command Prompt):
+      copy .env.example .env
+      # On Windows (PowerShell):
+      Copy-Item .env.example .env
+      ```
+    - The `.env` file should contain:
+      ```
+      PORT=5000
+      MONGO_URI=mongodb://localhost:27017/todo
+      ```
 
-### `npm run build`
+4.  Start the Backend Server:
+    ```bash
+    node server.js
+    # OR if nodemon is installed
+    npx nodemon server.js
+    ```
+    The server will run on `http://localhost:5000`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. Frontend Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1.  Navigate back to the root directory (if inside backend):
+    ```bash
+    cd ..
+    ```
+2.  Install frontend dependencies:
+    ```bash
+    npm install
+    ```
+3.  **Environment Variables**:
+    - `.env.development` and `.env.production` have been created for you.
+    - They define `REACT_APP_API_URL`.
+    - Default Value: `http://localhost:5000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4.  Start the React Application:
+    ```bash
+    npm start
+    ```
+    The application will run on `http://localhost:3000`.
 
-### `npm run eject`
+## Deployment
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Backend Deployment
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1.  Set the `PORT` environment variable on your hosting provider (e.g., Render, Heroku) to the port provided by the platform (usually automated).
+2.  Set `MONGO_URI` to your production MongoDB connection string (e.g., MongoDB Atlas).
+3.  Deploy the `backend` folder contents.
+4.  Start command: `node server.js`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Frontend Deployment
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1.  Update `.env.production` with your production backend URL:
+    ```
+    REACT_APP_API_URL=https://your-backend-url.com
+    ```
+2.  Build the project:
+    ```bash
+    npm run build
+    ```
+3.  Deploy the contents of the `build/` folder to your static hosting provider (e.g., Vercel, Netlify, Github Pages).
 
-## Learn More
+## Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Add, Edit, Delete Todos
+- Mark Todos as Completed
+- Data persisted in MongoDB
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Troubleshooting
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Connection Error**: Ensure MongoDB is running locally (`mongod`).
+- **Network Error**: Ensure the backend server is running on port 5000 (or the port specified in `.env`).
