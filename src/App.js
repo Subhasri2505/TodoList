@@ -9,9 +9,12 @@ function App() {
   const [editingid, seteditingid] = useState(null);
   const [editingtext, seteditingtext] = useState('');
 
+  // Define API base URL
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
   // Load todos from backend on page load
   useEffect(() => {
-    axios.get("http://localhost:5000/api/todos")
+    axios.get(`${API_URL}/api/todos`)
       .then(res => setTodos(res.data))
       .catch(err => console.log(err));
   }, []);
@@ -20,7 +23,7 @@ function App() {
   const addTodo = async () => {
     if (input.trim() === '') return;
 
-    const res = await axios.post("http://localhost:5000/api/todos", {
+    const res = await axios.post(`${API_URL}/api/todos`, {
       text: input
     });
 
@@ -30,13 +33,13 @@ function App() {
 
   // Delete todo from backend
   const deleteTodo = async (id) => {
-    await axios.delete(`http://localhost:5000/api/todos/${id}`);
+    await axios.delete(`${API_URL}/api/todos/${id}`);
     setTodos(todos.filter(todo => todo._id !== id));
   };
 
   // Toggle complete in backend
   const toggleComplete = async (id, completed) => {
-    const res = await axios.put(`http://localhost:5000/api/todos/${id}`, {
+    const res = await axios.put(`${API_URL}/api/todos/${id}`, {
       completed: !completed
     });
 
@@ -53,7 +56,7 @@ function App() {
   const updateTodo = async (id) => {
     if (editingtext.trim() === '') return;
 
-    const res = await axios.put(`http://localhost:5000/api/todos/${id}`, {
+    const res = await axios.put(`${API_URL}/api/todos/${id}`, {
       text: editingtext
     });
 
