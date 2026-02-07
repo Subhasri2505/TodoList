@@ -14,7 +14,7 @@ function App() {
   const [deleteConfirm, setDeleteConfirm] = useState(null);
 
   // API base URL
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+  const API_URL = process.env.REACT_APP_API_URL || "https://todolist-backend-x5fj.onrender.com";
 
   // Load todos from backend on page load
   const fetchTodos = useCallback(async () => {
@@ -40,7 +40,7 @@ function App() {
   // Add todo to backend
   const addTodo = async (e) => {
     e?.preventDefault();
-    
+
     if (input.trim() === '') {
       setError('Please enter a todo item');
       setTimeout(() => setError(null), 3000);
@@ -189,8 +189,8 @@ function App() {
               placeholder="What needs to be done? ✍️"
               disabled={loading}
             />
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn btn-primary"
               disabled={loading || !input.trim()}
             >
@@ -235,25 +235,25 @@ function App() {
                 {filter === 'completed' ? '🎉' : filter === 'active' ? '📝' : '📋'}
               </div>
               <h3 className="empty-title">
-                {filter === 'completed' 
-                  ? 'No completed tasks yet' 
-                  : filter === 'active' 
-                  ? 'No active tasks' 
-                  : 'No tasks yet'}
+                {filter === 'completed'
+                  ? 'No completed tasks yet'
+                  : filter === 'active'
+                    ? 'No active tasks'
+                    : 'No tasks yet'}
               </h3>
               <p className="empty-description">
-                {filter === 'all' 
-                  ? 'Start by adding your first task above' 
+                {filter === 'all'
+                  ? 'Start by adding your first task above'
                   : filter === 'active'
-                  ? 'All tasks are completed! 🎊'
-                  : 'Complete some tasks to see them here'}
+                    ? 'All tasks are completed! 🎊'
+                    : 'Complete some tasks to see them here'}
               </p>
             </div>
           ) : (
             <div className="todos-list">
               {filteredTodos.map(todo => (
-                <div 
-                  key={todo._id} 
+                <div
+                  key={todo._id}
                   className={`todo-item ${todo.completed ? 'completed' : ''}`}
                 >
                   <div className="todo-content">
@@ -340,13 +340,13 @@ function App() {
               Are you sure you want to delete this task? This action cannot be undone.
             </p>
             <div className="modal-actions">
-              <button 
+              <button
                 className="btn btn-secondary"
                 onClick={() => setDeleteConfirm(null)}
               >
                 Cancel
               </button>
-              <button 
+              <button
                 className="btn btn-danger"
                 onClick={() => deleteTodo(deleteConfirm)}
               >
