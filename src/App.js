@@ -14,7 +14,7 @@ function App() {
   const [deleteConfirm, setDeleteConfirm] = useState(null);
 
   // API base URL
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+  const API_URL = process.env.REACT_APP_API_URL || "https://todolist-backend-x5fj.onrender.com";
 
   // Load todos from backend on page load
   const fetchTodos = useCallback(async () => {
