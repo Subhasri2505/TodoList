@@ -1,9 +1,8 @@
 {
-    "name": "backend",
+    "name": "todolist-backend",
     "version": "1.0.0",
-    "description": "Backend for Todolist application",
-    "main": "server.mjs",
     "type": "module",
+    "main": "server.mjs",
     "scripts": {
         "start": "node server.mjs",
         "dev": "node --watch server.mjs"
